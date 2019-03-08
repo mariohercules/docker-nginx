@@ -1,5 +1,5 @@
 # docker-nginx
-NGINX load balancer with Wordpress and MySQL
+NGINX load balancer with WordPress and MySQL
 
 ## Scheme 
-Client > NGINX > Wordpres (1...n) > MySQL
+Client > NGINX > WordPress (1...n) > MySQL
