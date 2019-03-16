@@ -5,7 +5,7 @@ Docker NGINX load balancer with WordPress and MySQL
 
 ![Screenshot](Diagram.png)
 
-## How-To
+## How to use
 
 * create a file `docker-composer.yaml` and put the contents below:
 
