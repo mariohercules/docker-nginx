@@ -7,7 +7,14 @@ Docker NGINX load balancer with WordPress and MySQL
 
 ## How to use
 
-* create a file `docker-composer.yaml` and put the contents below:
+```bash
+$ cd docker
+$ docker-compose up -d
+```
+
+* The contents of the `docker-composer.yaml` create 5 services: 1 Mysql, 3 Wordpress and 1 Nginx
+* The wordrpress and nginx have volumes associated with local machine and docker container.
+
 
 ```yaml
 version: '3'
@@ -70,28 +77,28 @@ services:
       - wordpress3                           
 ```
 
-* create a file `nginx.conf` and put the contents below:
+* The file `nginx.conf` has configurations for nginx:
 
 ```conf
 events { worker_connections 2048; }
 
 http { 
-  upstream localhost { # configura um pool de endereço de servidores  
+  upstream localhost { #  server address poll 
       server docker_wordpress1_1;
       server docker_wordpress2_1;
       server docker_wordpress3_1;      
   }
   
-  server { # configura esse servidor
-      listen 80 default_server; # escutando por conexões na porta 80
+  server { # server configuration
+      listen 80 default_server; # default port 80:80
       listen [::]:80 default_server;
 
       root /usr/share/nginx/html;
       index index.php;
 
-      location / { # repassa todos os requests para um dos endereços do upstream
-        proxy_pass  http://localhost;  # esse endereço aponta para o upstream wordpress
-        add_header X-Upstream $upstream_addr; # adiciona o header Host com o valor de um dos endereços configurados no upstream
+      location / { # pass all requests to the upstream addresses
+        proxy_pass  http://localhost; 
+        add_header X-Upstream $upstream_addr; # adds the Host header with the value the configured upstream addresses array
       }
   }
 }
