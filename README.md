@@ -7,14 +7,30 @@ Docker NGINX load balancer with WordPress and MySQL
 
 ## How to use
 
-```bash
+### Configure containers
+
+* Create containers (mysql, wordpress and nginx).
+* Clone this repository and execute this commands:
+
+```
 $ cd docker
 $ docker-compose up -d
+$ docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}\t{{.Ports}}"
+```
+
+* Verify if the 5 containers is up with command `docker ps` 
+
+```
+IMAGE               COMMAND                  NAMES                 PORTS
+nginx:latest        "nginx -g 'daemon of…"   docker_nginx_1        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp
+wordpress:latest    "docker-entrypoint.s…"   docker_wordpress2_1   80/tcp
+wordpress:latest    "docker-entrypoint.s…"   docker_wordpress1_1   80/tcp
+wordpress:latest    "docker-entrypoint.s…"   docker_wordpress3_1   80/tcp
+mysql:5.5.60        "docker-entrypoint.s…"   docker_db_1           3306/tcp
 ```
 
 * Open `http://localhost`
 * Install e configure WordPress 
-
 * The file `docker-composer.yaml` has configuration to create: - 1 Mysql - 3 Wordpress - 1 Nginx
 * The wordrpress and nginx have volumes associated with local machine and docker container.
 
