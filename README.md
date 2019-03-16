@@ -12,6 +12,9 @@ $ cd docker
 $ docker-compose up -d
 ```
 
+* Open `http://localhost`
+* Install e configure WordPress 
+
 * The contents of the `docker-composer.yaml` create 5 services: 1 Mysql, 3 Wordpress and 1 Nginx
 * The wordrpress and nginx have volumes associated with local machine and docker container.
 
@@ -104,10 +107,3 @@ http {
 }
 
 ```
-
-```bash
-$ docker-compose up -d
-```
-
-* Open `http://localhost`
-* Install e configure WordPress 
