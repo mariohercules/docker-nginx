@@ -14,12 +14,17 @@ version: '3'
 services:
   nginx:
     image: nginx:latest
+    restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/log:/var/log/nginx      
     ports:
       - 80:80
       - 443:443
+    depends_on:
+      - wordpress1
+      - wordpress2
+      - wordpress3       
   db:
     image: mysql:5.5.60
     environment:
@@ -62,7 +67,7 @@ services:
     volumes: 
       - ./wordpress:/var/www/html
     depends_on:
-      - db        
+      - db                
 ```
 
 * create a file `nginx.conf` and put the contents below:
@@ -96,3 +101,6 @@ http {
 ```bash
 $ docker-compose up -d
 ```
+
+* Open `http://localhost`
+* Install e configure WordPress 
