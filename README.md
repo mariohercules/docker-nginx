@@ -1,5 +1,5 @@
 # docker-nginx
-[NGINX](http://nginx.org) load balancer with WordPress and MySQL
+Using Docker with [NGINX](http://nginx.org) to create a load balancer with WordPress and MySQL
 
 ## Scheme 
 
